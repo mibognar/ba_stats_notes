@@ -222,50 +222,6 @@ A JASP leíró statisztikai táblázatának **Kurtosis** értéke
 a mintanagyságra korrigált **excess kurtosis** (többletcsúcsosság).
 Jelöljük ezt \(K\)-val. A normális eloszláshoz tartozó elméleti referenciaértéke 0.
 
-**A JASP által használt képlet:**
-
-::: formula
-\[
-K=
-\frac{n(n+1)}{(n-1)(n-2)(n-3)}
-\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^4
--\frac{3(n-1)^2}{(n-2)(n-3)}
-\]
-:::
-
-A képletben \(n\) az érvényes megfigyelések száma,
-\(x_i\) az egyes megfigyelések értéke, \(\bar{x}\) a mintaátlag,
-\(s\) pedig az \(n-1\) nevezővel számított korrigált tapasztalati szórás.
-A számításhoz legalább négy megfigyelés és nullánál nagyobb szórás szükséges.
-
-**A számítás lépései:**
-
-1. Kiszámítjuk a mintaátlagot és a korrigált tapasztalati szórást.
-2. Minden értékből kivonjuk a mintaátlagot, majd az eltérést elosztjuk a szórással.
-3. Ezeket a standardizált eltéréseket a negyedik hatványra emeljük és összeadjuk.
-4. Az összeget megszorozzuk a képlet első törtjével, majd kivonjuk a második törtet.
-
-**A kurzusban alkalmazott gyakorlati értelmezés:**
-
-| A JASP Kurtosis értéke | Értelmezés a csúcsosság alapján |
-| --- | --- |
-| \(K < -2\) | Lapos eloszlás. |
-| \(-2 \leq K \leq +2\) | Közel normálisnak tekinthető csúcsosság. |
-| \(K > +2\) | Csúcsos eloszlás. |
-
-::: example
-**Példák a besorolásra:** \(K=-2{,}4\) esetén lapos,
-\(K=0{,}8\) esetén a csúcsosság alapján közel normális,
-\(K=3{,}1\) esetén csúcsos eloszlásról beszélünk a kurzus szabálya szerint.
-:::
-
-::: note
-A −2 és +2 közötti tartomány itt gyakorlati elfogadási tartomány,
-nem a JASP által elvégzett normalitáspróba eredménye.
-A teljes normalitás megítéléséhez a ferdeséget és az eloszlás ábráját is vizsgáljuk.
-A „lapos” és „csúcsos” hagyományos elnevezés: a mutató a szélsőséges értékek
-szerepét is tükrözi, nem pusztán a görbe csúcsának magasságát.
-:::
 
 ### 2.4. Melyik mutatót válasszuk?
 
@@ -297,9 +253,12 @@ az 1 biztos eseménynek felel meg. Folytonos eloszlásnál egy konkrét
 
 A valószínűség matematikailag kifejezhető a következőképpen:
 
+::: formula
 \[
-P=\frac{kedvező\, kimenetelek\, száma}{összes\, kimenetel}
+P=\frac{\text{kedvező kimenetelek száma}}{\text{összes kimenetel}}
 \]
+:::
+
 
 
 Egy szabályos pénzérme feldobásakor a fej

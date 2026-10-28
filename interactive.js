@@ -9,16 +9,19 @@ window.MathJax = {
 
 "use strict";
 
-// Magyar számformátum.
+const ui = window.courseLanguage;
+
+// Number formatting follows the selected language.
 const hu = (x, digits=2) =>
-  Number(x).toLocaleString("hu-HU", {
+  Number(x).toLocaleString(ui.locale, {
     minimumFractionDigits:digits,
     maximumFractionDigits:digits
   });
 
 // LaTeX-számformátum tizedesvesszővel.
 function latexNumber(value, digits=2){
-  return Number(value).toFixed(digits).replace(".", "{,}");
+  const number = Number(value).toFixed(digits);
+  return ui.english ? number : number.replace(".", "{,}");
 }
 
 // MathJax újrarenderelése dinamikus tartalomnál.
@@ -127,7 +130,7 @@ function gradeQuiz(){
     if(!selected){
       feedback.className = "feedback incorrect";
       feedback.textContent =
-        "Erre a kérdésre még nem válaszoltál.";
+        ui.unanswered;
       return;
     }
 
@@ -141,9 +144,9 @@ function gradeQuiz(){
       "feedback " + (correct?"correct":"incorrect");
 
     feedback.innerHTML = `
-      <strong>${correct?"Helyes válasz!":
-        "Helytelen válasz."}</strong><br>
-      ${!correct?"Helyes válasz: "+
+      <strong>${correct?ui.correct:
+        ui.incorrect}</strong><br>
+      ${!correct?ui.correctAnswer+
         item.opts[item.correct]+"<br>":""}
       ${item.explanation}
     `;
@@ -151,9 +154,9 @@ function gradeQuiz(){
 
   document.getElementById("quizScore").innerHTML = `
     <div class="widget">
-      <h3>Eredmény: ${score} / ${questions.length}</h3>
-      <p>Megválaszolt kérdések: ${answered} / ${questions.length}</p>
-      <p>Helyes válaszok aránya:
+      <h3>${ui.result}: ${score} / ${questions.length}</h3>
+      <p>${ui.answered}: ${answered} / ${questions.length}</p>
+      <p>${ui.percentage}:
       ${Math.round(score/questions.length*100)}%</p>
     </div>
   `;
@@ -251,7 +254,7 @@ function drawNormalChart(){
     x:310,y:244,
     "text-anchor":"middle",
     "font-size":14,fill:"currentColor"
-  },"z-pontszám"));
+  },ui.zScore));
 }
 
 function drawDispersionChart(){
@@ -260,9 +263,9 @@ function drawDispersionChart(){
 
   const panels=[
     {left:20,right:295,mu:0,sigma:0.65,color:"#087b57",
-     label:"Kis szóródás"},
+     label:ui.lowDispersion},
     {left:325,right:600,mu:0,sigma:1.5,color:"#245bb4",
-     label:"Nagy szóródás"}
+     label:ui.highDispersion}
   ];
 
   for(const panel of panels){

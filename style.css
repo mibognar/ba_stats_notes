@@ -24,6 +24,17 @@ header h1{
   line-height:1.2;margin:0 0 14px;
 }
 header p{color:#d4e2f6;margin:0}
+.language-bar{
+  max-width:1152px;margin:0 auto 22px;
+  display:flex;justify-content:flex-end;
+}
+.language-switch{
+  display:inline-block;padding:7px 18px;
+  border:1px solid #d4e2f6;border-radius:8px;
+  color:white;text-decoration:none;font-weight:600;
+}
+.language-switch:hover{background:#ffffff18}
+.language-switch:focus-visible{outline:3px solid white;outline-offset:4px}
 .layout{
   max-width:1200px;margin:auto;padding:28px 20px;
   display:grid;
@@ -172,7 +183,7 @@ footer{
     padding:20px;
   }
   header p{color:#555}
-  nav,.widget button{display:none}
+  nav,.widget button,.language-bar{display:none}
   .layout{display:block}
   section{
     box-shadow:none;

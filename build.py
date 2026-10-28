@@ -119,9 +119,9 @@ def render(source, widgets):
     return "\n".join(out)
 
 
-def build():
-    notes = (ROOT / "notes.md").read_text(encoding="utf-8")
-    widgets_source = (ROOT / "widgets.html").read_text(encoding="utf-8")
+def compile_notes(notes_file, widgets_file):
+    notes = (ROOT / notes_file).read_text(encoding="utf-8")
+    widgets_source = (ROOT / widgets_file).read_text(encoding="utf-8")
     widgets = dict(re.findall(r'<template id="([\w-]+)">\n(.*?)\n</template>', widgets_source, re.S))
     datasets = {}
 
@@ -134,34 +134,56 @@ def build():
 
     notes = re.sub(r"^```(quiz|explanations)\n(.*?)^```\s*$", extract_data, notes, flags=re.S | re.M)
     if set(datasets) != {"quiz", "explanations"}:
-        raise ValueError("Keep one quiz and one explanations data block in notes.md.")
+        raise ValueError(f"Keep one quiz and one explanations data block in {notes_file}.")
     for question in datasets["quiz"]:
         if not isinstance(question["correct"], int) or not 0 <= question["correct"] < len(question["opts"]):
             raise ValueError("Quiz correct index must identify an existing option.")
     parts = re.split(r"<!-- section: ([\w-]+) -->", notes)
     sections = []
     seen = set()
+    headings = {}
     for i in range(1, len(parts), 2):
         section_id, text = parts[i:i+2]
         if section_id in seen:
             raise ValueError(f"Duplicate section: {section_id}")
         seen.add(section_id)
+        heading = re.search(r"^## (.+)$", text, re.M)
+        if not heading:
+            raise ValueError(f"Missing chapter heading: {section_id} in {notes_file}")
+        headings[section_id] = heading[1]
         sections.append(f'<section id="{section_id}">\n{render(text, widgets)}\n</section>')
     if not sections:
         raise ValueError("No section markers found.")
     for name, data in datasets.items():
-        safe_json = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
-        sections.append(f'<script type="application/json" id="{name}-data">{safe_json}</script>')
+        sections.append(f'<script type="application/json" id="{name}-data">{script_json(data)}</script>')
+    return {"html": "\n\n".join(sections), "ids": seen, "headings": headings, "datasets": datasets}
+
+
+def script_json(data):
+    """JSON safe inside a script element, including HTML stored as strings."""
+    return json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+
+
+def build():
+    hungarian = compile_notes("notes.md", "widgets.html")
+    english = compile_notes("notes_en.md", "widgets_en.html")
+    if hungarian["ids"] != english["ids"]:
+        raise ValueError("Both languages must have the same section markers.")
     page_path = ROOT / "index.html"
     page = page_path.read_text(encoding="utf-8")
-    for target in re.findall(r'href="#([\w-]+)"', page):
-        if target not in seen:
+    targets = re.findall(r'href="#([\w-]+)"', page)
+    for target in targets:
+        if target not in hungarian["ids"]:
             raise ValueError(f"Navigation points to a missing section: {target}")
-    page, count = re.subn(r"<!-- NOTES:START -->.*?<!-- NOTES:END -->", lambda _: "<!-- NOTES:START -->\n" + "\n\n".join(sections) + "\n<!-- NOTES:END -->", page, flags=re.S)
+    navigation = "\n".join(f'<a href="#{target}">{inline(english["headings"][target])}</a>' for target in dict.fromkeys(targets))
+    payload = {"html": english["html"], "navigation": navigation}
+    content = hungarian["html"] + '\n<script type="application/json" id="english-page-data">' + script_json(payload) + '</script>'
+    page, count = re.subn(r"<!-- NOTES:START -->.*?<!-- NOTES:END -->", lambda _: "<!-- NOTES:START -->\n" + content + "\n<!-- NOTES:END -->", page, flags=re.S)
     if count != 1:
         raise ValueError("index.html must contain exactly one NOTES:START / NOTES:END pair.")
     page_path.write_text(page, encoding="utf-8")
-    print(f"Built index.html: {len(seen)} sections, {len(datasets['quiz'])} quiz questions.")
+    print(f"Built index.html: Hungarian and English, {len(hungarian['ids'])} sections each; "
+          f"{len(hungarian['datasets']['quiz'])}/{len(english['datasets']['quiz'])} quiz questions.")
 
 
 if __name__ == "__main__":

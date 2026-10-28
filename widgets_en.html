@@ -1,0 +1,73 @@
+<!-- English interactive markup. Edit course prose in notes_en.md. -->
+
+<template id="dispersionChart">
+<svg class="chart" id="dispersionChart" viewBox="0 0 620 190" role="img" aria-label="Normal distributions with low and high dispersion">
+</svg>
+</template>
+
+<template id="normalChart">
+<svg class="chart" id="normalChart" viewBox="0 0 620 250" role="img" aria-label="Standard normal distribution with z-scores">
+</svg>
+</template>
+
+<template id="standard-error">
+<div class="widget">
+<h4>Interactive standard error calculator</h4>
+<p>Change the sample size and sample standard deviation to see how the estimated standard error changes.</p>
+<label for="sampleSize">Sample size: <strong id="nLabel">100</strong></label>
+<input id="sampleSize" type="range" min="10" max="400" step="10" value="100">
+<label for="sdRange">Sample standard deviation: <strong id="sdLabel">20</strong></label>
+<input id="sdRange" type="range" min="5" max="50" step="1" value="20">
+<p>Estimated standard error:</p>
+<output id="seOutput">2.00</output>
+<div class="formula" id="seCalculation">
+\[
+\widehat{SE}_{\bar{x}}=\frac{20}{\sqrt{100}}=2.00
+\]
+</div>
+<svg class="chart" viewBox="0 0 600 110" role="img" aria-label="Chart showing the size of the standard error">
+<text x="10" y="22" font-size="14" fill="currentColor">Standard error</text>
+<rect x="10" y="42" width="570" height="26" rx="5" fill="#dce7f7"></rect>
+<rect id="seBar" x="10" y="42" width="114" height="26" rx="5" fill="#245bb4"></rect>
+<text x="10" y="92" font-size="12" fill="currentColor">A larger sample size reduces the standard error.</text>
+</svg>
+</div>
+</template>
+
+<template id="test-selector">
+<div class="widget">
+<h4>Interactive test selector</h4>
+<p>Choose a research design.</p>
+<div id="testChoices">
+<label class="option">
+<input type="radio" name="design" value="one" checked>
+We compare the mean of 30 students with a known reference mean.
+</label>
+<label class="option">
+<input type="radio" name="design" value="ind">
+Two different groups of students complete a memory test.
+</label>
+<label class="option">
+<input type="radio" name="design" value="pair">
+The same 30 students complete a test before and after training.
+</label>
+</div>
+<div id="testExplanation" class="feedback correct" aria-live="polite"></div>
+</div>
+</template>
+
+<template id="quiz">
+<div id="quiz"></div>
+</template>
+
+<template id="gradeBtn">
+<button id="gradeBtn" type="button">Check answers</button>
+</template>
+
+<template id="resetBtn">
+<button id="resetBtn" type="button" class="secondary">Start again</button>
+</template>
+
+<template id="quizScore">
+<div id="quizScore" aria-live="polite"></div>
+</template>
