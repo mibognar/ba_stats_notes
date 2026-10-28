@@ -1,0 +1,1014 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bevezetés a statisztikába – Pszichológia BSc</title>
+
+<script defer src="interactive.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>Bevezetés a statisztikába</h1>
+  <p>Pszichológia BSc – Interaktív tanulási jegyzet</p>
+  <p>A tudományos gondolkodástól a hipotézisvizsgálaton át a t-próbákig</p>
+</header>
+
+<div class="layout">
+
+<nav aria-label="Tartalomjegyzék">
+  <strong>Tartalomjegyzék</strong>
+  <a href="#s1">1. Tudományos gondolkodás</a>
+  <a href="#s2">2. Leíró statisztika</a>
+  <a href="#s3">3. Valószínűség</a>
+  <a href="#s4">4. Normális eloszlás</a>
+  <a href="#s5">5. Mintavételi eloszlás és SE</a>
+  <a href="#s6">6. Hipotézisvizsgálat</a>
+  <a href="#s7">7. z- és t-érték</a>
+  <a href="#s8">8. p-érték és szignifikancia</a>
+  <a href="#s9">9. A három t-próba</a>
+  <a href="#s10">10. A t-próbák feltételei</a>
+  <a href="#s11">11. Hatásméret és CI</a>
+  <a href="#s12">12. Próbaválasztó</a>
+  <a href="#s13">13. Eredmények közlése</a>
+  <a href="#s14">14. Fogalomtár</a>
+  <a href="#s15">15. Gyakorlófeladatok</a>
+</nav>
+
+<main>
+<!-- NOTES:START -->
+<section id="s1">
+<h2>1. A tudományos gondolkodás és a statisztika szerepe</h2>
+<p>A pszichológia empirikus tudomány: célja az emberi viselkedés,
+a megismerés és az érzelmek megértése szisztematikus
+megfigyelések és mérések segítségével.</p>
+<p>A pszichológiai jelenségek összetettek, az emberi viselkedés
+pedig jelentős változatosságot mutat az egyének és helyzetek
+között. Egy valódi pszichológiai hatás sem feltétlenül figyelhető
+meg minden egyénnél vagy minden mérés során.</p>
+<div class="note">
+<p><strong>A statisztika célja:</strong></p>
+<p>a megfigyelt adatok összefoglalása, a populációs jellemzők
+becslése és a tudományos hipotézisek vizsgálata a
+bizonytalanság figyelembevételével.</p>
+</div>
+<p>Például egy kutató vizsgálhatja azt, hogy az alvásmegvonás
+rontja-e az emlékezeti teljesítményt. Még ha az alvásmegvonás
+után valóban alacsonyabb átlagot is talál, <strong>meg kell vizsgálnia,
+hogy mekkora a különbség, mennyire változékonyak az adatok,
+és mennyire egyeztethető össze az eredmény a véletlen
+mintavételi ingadozással.</strong></p>
+<h3>1.1. Populáció és minta</h3>
+<p><strong>Populáció (alapsokaság):</strong> azon egyének vagy megfigyelések
+teljes összessége, amelyről következtetéseket szeretnénk levonni.</p>
+<p><strong>Minta:</strong> a populáció azon részhalmaza,
+amelyből ténylegesen adatokat gyűjtünk.</p>
+<div class="table-wrap"><table>
+<tr><th>Populációs paraméter</th><th>Mintastatisztika</th></tr>
+<tr><td>Várható érték (sokasági átlag): \(\mu\)</td><td>Mintaátlag: \(\bar{x}\)</td></tr>
+<tr><td>Szórás: \(\sigma\)</td><td>Szórás: \(s\)</td></tr>
+<tr><td>Véges sokaság elemszáma: \(N\)</td><td>Mintaelemszám: \(n\)</td></tr>
+</table></div>
+<p>A populációs paraméterek általában ismeretlenek.
+A mintából számított statisztikákkal becsüljük őket.
+A minta azonban csak bizonytalan információt szolgáltat
+a teljes populációról.</p>
+<h3>1.2. Leíró és következtető statisztika</h3>
+<p><strong>Leíró statisztika:</strong> a ténylegesen megfigyelt
+adatok jellemzése, például átlag, szórás és gyakoriság segítségével.</p>
+<p><strong>Következtető statisztika (statisztikai következtetés):</strong> a mintából kiindulva
+a populációra vonatkozó következtetések levonása, a mintavételi
+bizonytalanság figyelembevételével.</p>
+<p>A leíró statisztika kérdése:
+<em>Milyenek a megfigyelt adatok?</em></p>
+<p>A következtető statisztika kérdése:
+<em>Mit tudhatunk meg az adatokból a populációról?</em></p>
+</section>
+
+<section id="s2">
+<h2>2. Leíró statisztika</h2>
+<p>A leíró statisztikában a <strong>középértékek</strong> az adatok központi
+elhelyezkedését, a <strong>szóródási mutatók</strong> a változékonyságukat,
+az <strong>alakmutatók</strong> pedig az eloszlás alakját jellemzik.</p>
+<h3>2.1. Középértékek</h3>
+<h4>Átlag (számtani közép)</h4>
+<p>Az átlag a megfigyelések összegének és számának hányadosa.</p>
+<div class="formula">
+\[
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
+\]
+</div>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>2, 4, 4, 6, 9.</p>
+\[
+\bar{x}=\frac{2+4+4+6+9}{5}=5
+\]
+</div>
+<p>Az átlag minden megfigyelést figyelembe vesz,
+de érzékeny a szélsőséges értékekre.</p>
+<h4>Medián</h4>
+<p>A nagyság szerint sorba rendezett adatok középső értéke.
+A példában a medián 4. Páros elemszám esetén a két
+középső érték átlagát vesszük. A medián kevésbé érzékeny
+a szélsőséges értékekre.</p>
+<h4>Módusz</h4>
+<p>A leggyakrabban előforduló érték. A példában 4.
+Egy eloszlásnak több módusza is lehet.</p>
+<h3>2.2. Szóródási mutatók</h3>
+<p>A szóródási mutatók azt jellemzik, hogy a megfigyelések
+mennyire különböznek egymástól. Két eloszlásnak lehet
+azonos átlaga, miközben szóródásuk jelentősen eltér.</p>
+<svg class="chart" id="dispersionChart" viewbox="0 0 620 190" role="img" aria-label="Kis és nagy szóródású normális eloszlások">
+</svg>
+<h4>Terjedelem</h4>
+<p>A legnagyobb és legkisebb érték különbsége.</p>
+<div class="formula">
+\[
+R=x_{\max}-x_{\min}
+\]
+</div>
+<p>A példában \(9-2=7\). Könnyen kiszámítható,
+de érzékeny a szélsőséges megfigyelésekre.</p>
+<h4>Variancia (szórásnégyzet)</h4>
+<p>A megfigyelések átlagtól vett négyzetes eltérései alapján
+számított változékonysági mutató.</p>
+<div class="formula">
+\[
+s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}
+\]
+</div>
+<p>Az itt használt, \(n-1\) nevezőjű mutató neve
+<strong>korrigált tapasztalati szórásnégyzet</strong>, másként korrigált mintavariancia.
+Független, azonos eloszlású, véges varianciájú megfigyelések esetén
+torzítatlanul becsüli a sokasági varianciát; szabadságfoka \(n-1\).
+Az \(n\) nevezővel számított változat a korrigálatlan tapasztalati szórásnégyzet, azaz variancia.</p>
+<h4>Szórás (standard deviation, SD)</h4>
+<div class="formula">
+\[
+s=\sqrt{\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}}
+\]
+</div>
+<p>A szórás a variancia négyzetgyöke.
+Az eredeti mérési egységben fejezzük ki.
+Az itt szereplő \(s\) pontos neve <strong>korrigált tapasztalati szórás</strong>;
+a jegyzet további részében ezt röviden mintaszórásnak nevezzük.</p>
+<h4>Interkvartilis terjedelem (IQR)</h4>
+<div class="formula">
+\[
+IQR=Q_3-Q_1
+\]
+</div>
+<p>A harmadik és első kvartilis különbsége.
+Az adatok középső 50%-ának szóródását jellemzi,
+és kevésbé érzékeny a kiugró értékekre.</p>
+<h3>2.3. Alakmutatók: ferdeség és csúcsosság</h3>
+<h4>Ferdeség (aszimmetria; skewness)</h4>
+<p>A <strong>ferdeség</strong> az eloszlás aszimmetriáját jellemzi.
+A szóródási mutatókat kiegészítő <strong>alakmutató</strong>;
+számszerű jellemzésére ferdeségi együtthatót használunk.</p>
+<ul><li><strong>Pozitív (jobbra) ferdeség:</strong> az eloszlás jobb oldali farka hosszabb, a nagy értékek irányába nyúlik.</li>
+<li><strong>Negatív (balra) ferdeség:</strong> a bal oldali farok hosszabb, a kis értékek irányába nyúlik.</li>
+<li><strong>Nulla ferdeség:</strong> jellemző a szimmetrikus eloszlásokra, de önmagában nem bizonyítja a szimmetriát vagy a normalitást.</li></ul>
+<div class="example">
+<p><strong>Példa:</strong> A reakcióidők eloszlása gyakran jobbra ferde:
+sok válasz viszonylag gyors, néhány azonban nagyon lassú.
+Egy könnyű teszten sok magas és néhány alacsony pontszám
+balra ferde eloszlást eredményezhet.</p>
+</div>
+<h4>Csúcsosság (kurtosis)</h4>
+<p>A <strong>csúcsosság</strong> az eloszlás alakját jellemző mutató.
+A JASP leíró statisztikai táblázatának <strong>Kurtosis</strong> értéke
+a mintanagyságra korrigált <strong>excess kurtosis</strong> (többletcsúcsosság).
+Jelöljük ezt \(K\)-val. A normális eloszláshoz tartozó elméleti referenciaértéke 0.</p>
+<p><strong>A JASP által használt képlet:</strong></p>
+<div class="formula">
+\[
+K=
+\frac{n(n+1)}{(n-1)(n-2)(n-3)}
+\sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^4
+-\frac{3(n-1)^2}{(n-2)(n-3)}
+\]
+</div>
+<p>A képletben \(n\) az érvényes megfigyelések száma,
+\(x_i\) az egyes megfigyelések értéke, \(\bar{x}\) a mintaátlag,
+\(s\) pedig az \(n-1\) nevezővel számított korrigált tapasztalati szórás.
+A számításhoz legalább négy megfigyelés és nullánál nagyobb szórás szükséges.</p>
+<p><strong>A számítás lépései:</strong></p>
+<ol><li>Kiszámítjuk a mintaátlagot és a korrigált tapasztalati szórást.</li>
+<li>Minden értékből kivonjuk a mintaátlagot, majd az eltérést elosztjuk a szórással.</li>
+<li>Ezeket a standardizált eltéréseket a negyedik hatványra emeljük és összeadjuk.</li>
+<li>Az összeget megszorozzuk a képlet első törtjével, majd kivonjuk a második törtet.</li></ol>
+<p><strong>A kurzusban alkalmazott gyakorlati értelmezés:</strong></p>
+<div class="table-wrap"><table>
+<tr><th>A JASP Kurtosis értéke</th><th>Értelmezés a csúcsosság alapján</th></tr>
+<tr><td>\(K &lt; -2\)</td><td>Lapos eloszlás.</td></tr>
+<tr><td>\(-2 \leq K \leq +2\)</td><td>Közel normálisnak tekinthető csúcsosság.</td></tr>
+<tr><td>\(K &gt; +2\)</td><td>Csúcsos eloszlás.</td></tr>
+</table></div>
+<div class="example">
+<p><strong>Példák a besorolásra:</strong> \(K=-2{,}4\) esetén lapos,
+\(K=0{,}8\) esetén a csúcsosság alapján közel normális,
+\(K=3{,}1\) esetén csúcsos eloszlásról beszélünk a kurzus szabálya szerint.</p>
+</div>
+<div class="note">
+<p>A −2 és +2 közötti tartomány itt gyakorlati elfogadási tartomány,
+nem a JASP által elvégzett normalitáspróba eredménye.
+A teljes normalitás megítéléséhez a ferdeséget és az eloszlás ábráját is vizsgáljuk.
+A „lapos” és „csúcsos” hagyományos elnevezés: a mutató a szélsőséges értékek
+szerepét is tükrözi, nem pusztán a görbe csúcsának magasságát.</p>
+</div>
+<h3>2.4. Melyik mutatót válasszuk?</h3>
+<div class="table-wrap"><table>
+<tr><th>Adatok jellemzője</th><th>Ajánlott mutató</th></tr>
+<tr><td>Közel szimmetrikus eloszlás</td><td>Átlag és szórás</td></tr>
+<tr><td>Erősen ferde eloszlás</td><td>Medián és IQR</td></tr>
+<tr><td>Kategorikus változó</td><td>Gyakoriság, százalék</td></tr>
+<tr><td>Szélső értékek bemutatása</td><td>Minimum, maximum, terjedelem</td></tr>
+</table></div>
+</section>
+
+<section id="s3">
+<h2>3. Valószínűség és véletlen ingadozás</h2>
+<p>A valószínűség azt fejezi ki, hogy egy adott
+valószínűségi modellben mennyire valószínű
+egy esemény bekövetkezése.</p>
+<ul><li>\(P=0\): az esemény valószínűsége nulla.</li>
+<li>\(P=0{,}5\): 50%-os valószínűség.</li>
+<li>\(P=1\): az esemény 1 valószínűséggel következik be.</li></ul>
+<p>Véges, egyenlő esélyű kimenetelekkel leírt modellekben a 0 lehetetlen,
+az 1 biztos eseménynek felel meg. Folytonos eloszlásnál egy konkrét
+érték felvételének valószínűsége 0 lehet anélkül, hogy az érték lehetetlen volna.</p>
+<p>A valószínűség matematikailag kifejezhető a következőképpen:</p>
+\[
+P=\frac{kedvező\, kimenetelek\, száma}{összes\, kimenetel}
+\]
+<p>Egy szabályos pénzérme feldobásakor a fej
+valószínűsége \(0{,}5\). Tíz dobásból azonban nem
+feltétlenül kapunk pontosan öt fejet.</p>
+<p>Ez a <strong>véletlen ingadozás</strong>:
+a megfigyelt eredmények eltérhetnek a várható értéktől
+akkor is, ha a mögöttes valószínűség változatlan.</p>
+<h3>3.1. Véletlen ingadozás a pszichológiában</h3>
+<p>A reakcióidők, memóriapontszámok és más pszichológiai
+mérések változnak a résztvevők között és az ismételt
+mérések során is.</p>
+<p>Tegyük fel, hogy két populáció átlagos reakcióideje
+azonos. Két véletlenül kiválasztott mintában mégis
+kaphatunk 510 és 520 ms-os mintaátlagot.</p>
+<div class="note">
+<p><strong>Fontos:</strong></p>
+<p>A mintaátlagok közötti különbség nem bizonyítja
+automatikusan a populációs átlagok különbségét.
+A következtetési statisztika ezt a bizonytalanságot
+kezeli.</p>
+</div>
+</section>
+
+<section id="s4">
+<h2>4. A normális eloszlás és a z-pontszám</h2>
+<h3>4.1. Normális eloszlás</h3>
+<p>A normális eloszlás szimmetrikus, haranggörbe alakú
+folytonos valószínűségi eloszlás.</p>
+<p>Két paramétere az átlag (\(\mu\)), amely a középpontot,
+és a szórás (\(\sigma\)), amely a szélességet határozza meg.</p>
+<svg class="chart" id="normalChart" viewbox="0 0 620 250" role="img" aria-label="Standard normális eloszlás, z-értékekkel">
+</svg>
+<p>Normális eloszlás esetén megközelítőleg:</p>
+<ul><li>Az értékek 68%-a az átlagtól számított 1 szóráson belül található.</li>
+<li>Az értékek 95%-a az átlagtól számított 2 szóráson belül található.</li>
+<li>Az értékek 99,7%-a az átlagtól számított 3 szóráson belül található.</li></ul>
+<p>Nem minden pszichológiai változó normális eloszlású.
+Például a reakcióidők gyakran jobbra ferdék.</p>
+<h3>4.2. z-pontszám</h3>
+<p>A z-pontszám azt fejezi ki, hogy egy megfigyelés
+hány populációs szórásnyira található az átlagtól.</p>
+<div class="formula">
+\[
+z=\frac{x-\mu}{\sigma}
+\]
+</div>
+<p>A pozitív z-érték átlag feletti, a negatív
+átlag alatti megfigyelést jelent.</p>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>Egy intelligenciateszt átlaga 100,
+szórása 15. Egy személy 130 pontot ér el.</p>
+\[
+z=\frac{130-100}{15}=2
+\]
+<p>A pontszám két szórással van az átlag fölött.
+Normális eloszlás esetén az értékek körülbelül
+97,7%-a ez alatt található.</p>
+</div>
+</section>
+
+<section id="s5">
+<h2>5. Mintavételi eloszlások és standard hiba</h2>
+<h3>5.1. Mi a mintavételi eloszlás?</h3>
+<p>Tegyük fel, hogy a populáció átlagos
+intelligenciapontszáma 100.</p>
+<p>Véletlenszerűen kiválasztunk 30 embert, és
+kiszámítjuk az átlagukat. Ez lehet például 103.
+Egy második mintában 98, egy harmadikban 101.</p>
+<p>Ha ezt több ezerszer, mindig azonos mintanagysággal megismételjük,
+és a mintaátlagokat ábrázoljuk, szemléltethetjük
+<strong>a mintaátlag mintavételi eloszlását</strong>.
+Az elméleti mintavételi eloszlás a mintaátlag lehetséges értékeit
+és a hozzájuk tartozó valószínűségeket írja le.</p>
+<div class="note">
+<p>A megfigyelések eloszlása az egyének
+közötti változékonyságot írja le.
+A mintaátlag mintavételi eloszlása azt mutatja meg,
+hogyan változnának a mintaátlagok ismételt mintavételek során.</p>
+</div>
+<p>Mintavételi eloszlás illusztráció - potyogó bogyók: &lt;https://www.esci-dances.thenewstatistics.com/&gt;</p>
+<h3>5.2. Standard hiba (SE)</h3>
+<p>Egy statisztikai mutató mintavételi eloszlásának
+szórását standard hibának nevezzük.</p>
+<p>Az átlag standard hibája független, azonos
+eloszlású megfigyelések esetén:</p>
+<div class="formula">
+\[
+SE_{\bar{x}}=\frac{\sigma}{\sqrt{n}}
+\]
+</div>
+<p>Mivel a populációs szórás általában ismeretlen,
+a standard hibát a mintaszórással becsüljük:</p>
+<div class="formula">
+\[
+\widehat{SE}_{\bar{x}}=\frac{s}{\sqrt{n}}
+\]
+</div>
+<p>Azonos mintaelemszám mellett a nagyobb szórás nagyobb standard hibát
+eredményez; azonos szórás mellett a nagyobb mintaelemszám kisebb standard hibával jár.</p>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>100 hallgató szorongáspontszámának
+szórása 20.</p>
+\[
+\widehat{SE}_{\bar{x}}=\frac{20}{\sqrt{100}}=2
+\]
+<p>400 hallgató esetén, azonos szórással:</p>
+\[
+\widehat{SE}_{\bar{x}}=\frac{20}{\sqrt{400}}=1
+\]
+</div>
+<div class="widget">
+<h4>Interaktív standardhiba-kalkulátor</h4>
+
+<p>Változtasd a mintaelemszámot és a mintaszórást,
+és figyeld meg, hogyan változik a becsült standard hiba!</p>
+
+<label for="sampleSize">
+Mintaelemszám: <strong id="nLabel">100</strong>
+</label>
+<input id="sampleSize" type="range" min="10" max="400" step="10" value="100">
+
+<label for="sdRange">
+Mintaszórás: <strong id="sdLabel">20</strong>
+</label>
+<input id="sdRange" type="range" min="5" max="50" step="1" value="20">
+
+<p>Becsült standard hiba:</p>
+<output id="seOutput">2,00</output>
+
+<div class="formula" id="seCalculation">
+\[
+\widehat{SE}_{\bar{x}}=\frac{20}{\sqrt{100}}=2{,}00
+\]
+</div>
+
+<svg class="chart" viewbox="0 0 600 110" role="img" aria-label="Standard hiba nagyságát jelző diagram">
+<text x="10" y="22" font-size="14" fill="currentColor">
+Standard hiba
+</text>
+<rect x="10" y="42" width="570" height="26" rx="5" fill="#dce7f7"></rect>
+<rect id="seBar" x="10" y="42" width="114" height="26" rx="5" fill="#245bb4"></rect>
+<text x="10" y="92" font-size="12" fill="currentColor">
+A nagyobb mintaelemszám csökkenti a standard hibát.
+</text>
+</svg>
+</div>
+<h3>5.3. Centrális határeloszlás-tétel</h3>
+<p>Független, azonos eloszlású, véges és pozitív varianciájú megfigyelések
+esetén a mintaátlag mintavételi eloszlása nagy mintában normális
+eloszlással közelíthető, akkor is, ha a populáció eloszlása nem normális.
+Pontosabban a standardizált mintaátlag eloszlása tart a standard normális eloszláshoz.</p>
+<p>Ez nem azt jelenti, hogy maguk az adatok válnak
+normális eloszlásúvá. A tétel a mintaátlagok
+eloszlására vonatkozik.</p>
+<p>Nincs olyan univerzális mintaelemszám, például
+\(n=30\), amely minden populáció esetén garantálná
+a megfelelő normális közelítést, de ha elérünk bizonyos mintaelemszámot, például \(n=30\), akkor feltételezhetjük a mintavételi eloszlás normalitását.</p>
+</section>
+
+<section id="s6">
+<h2>6. Tudományos hipotézisek és NHST</h2>
+<p>Az <strong>NHST</strong> a nullhipotézis szignifikanciavizsgálatának angol rövidítése
+(<em>null hypothesis significance testing</em>).</p>
+<h3>6.1. Tudományos és statisztikai hipotézisek</h3>
+<p>A tudományos hipotézis egy jelenségre vonatkozó
+magyarázat vagy előrejelzés.</p>
+<p>Például: <em>Az alvásmegvonás rontja az
+emlékezeti teljesítményt.</em></p>
+<p>Ennek statisztikai vizsgálatához populációs
+paraméterekre vonatkozó hipotéziseket fogalmazunk meg.</p>
+<h4>Nullhipotézis (\(H_0\))</h4>
+<p>Általában azt állítja, hogy a vizsgált
+populációs különbség vagy hatás nulla.</p>
+<div class="formula">
+\[
+H_0:\mu_1=\mu_2
+\]
+</div>
+<h4>Alternatív hipotézis, másként ellenhipotézis (\(H_1\))</h4>
+<p>A nullhipotézissel versengő állítás,
+amely szerint a populációs paraméter eltér
+a nullhipotézis szerinti értéktől.</p>
+<div class="formula">
+\[
+H_1:\mu_1\neq\mu_2
+\]
+</div>
+<h3>6.2. Egyoldali és kétoldali hipotézisek</h3>
+<p><strong>Kétoldali hipotézis:</strong> a különbség
+bármelyik irányban megjelenhet.</p>
+<div class="formula">
+\[
+H_1:\mu_1\neq\mu_2
+\]
+</div>
+<p><strong>Egyoldali hipotézis:</strong> a kutató
+előre meghatározott irányú különbséget vizsgál.</p>
+<div class="formula">
+\[
+H_1:\mu_1&lt;\mu_2
+\]
+</div>
+<p>Az irányt az eredmények megtekintése előtt
+kell kiválasztani és indokolni.
+Általában a kétoldali próba az alapértelmezett.</p>
+<h3>6.3. Az NHST lépései</h3>
+<ol><li>Megfogalmazzuk a \(H_0\) és \(H_1\) hipotézist.</li>
+<li>Előre kiválasztjuk a szignifikanciaszintet (\(\alpha\)).</li>
+<li>Kiszámítjuk a próbastatisztikát és a p-értéket.</li>
+<li>Összehasonlítjuk a p-értéket az \(\alpha\)-val.</li>
+<li>Elvetjük vagy nem vetjük el a nullhipotézist.</li></ol>
+<div class="note">
+<p>Ha \(p\leq\alpha\), elvetjük \(H_0\)-t.<br></p>
+<p>Ha \(p&gt;\alpha\), nem vetjük el \(H_0\)-t.<br></p>
+<p>Az NHST nem számítja ki közvetlenül annak
+valószínűségét, hogy \(H_0\) vagy \(H_1\) igaz.</p>
+</div>
+</section>
+
+<section id="s7">
+<h2>7. Próbastatisztikák, z-értékek és t-értékek</h2>
+<h3>7.1. Próbastatisztika</h3>
+<p>A próbastatisztika (pl t-érték, z-érték, pearson-féle r) azt fejezi ki, hogy a megfigyelt
+becslés mennyire tér el a nullhipotézis szerinti
+értéktől (a hipotetikus értéktől), a becslés bizonytalanságához viszonyítva.</p>
+<div class="formula">
+\[
+\text{Próbastatisztika}
+=
+\frac{\text{Megfigyelt becslés}-\text{Hipotetikus érték}}
+{\text{Standard hiba}}
+\]
+</div>
+<p>Egy 10 pontos különbség 2 pontos standard hiba
+mellett szélsőségesebb, mint 20 pontos standard
+hiba mellett.</p>
+<h3>7.2. z-próbastatisztika (u-próba)</h3>
+<p>Ismert populációs szórás és normális populációs eloszlás esetén
+a várható érték vizsgálatára z-próbát használhatunk.
+Magyar tananyagokban ez gyakran <strong>u-próba</strong> néven szerepel.
+Nagy mintában megfelelő feltételek mellett közelítő eljárásként is alkalmazható.</p>
+<div class="formula">
+\[
+z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
+\]
+</div>
+<p>A 2-es z-próbastatisztika azt jelenti, hogy a
+mintaátlag két standard hibával van a
+nullhipotézis szerinti átlag fölött.</p>
+<p>Ez nem azonos az egyéni z-pontszámmal:
+ott a nevező a populációs szórás,
+itt a mintaátlag standard hibája.</p>
+<h3>7.3. t-próbastatisztika</h3>
+<p>A pszichológiai kutatásokban a populáció szórása
+rendszerint ismeretlen, ezért a mintából becsüljük.</p>
+<div class="formula">
+\[
+t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}
+\]
+</div>
+<p>A t-érték azt mutatja meg, hogy a megfigyelt
+átlag hány becsült standard hibával tér el
+a nullhipotézisben feltételezett átlagtól.</p>
+<h3>7.4. A t-eloszlás</h3>
+<p>A t-eloszlás hasonlít a standard normális eloszláshoz,
+de szélső tartományaiban nagyobb a valószínűségtömeg (vastagabb a farka):
+az abszolút értékben nagy értékek gyakrabban fordulnak elő.
+Ez a populációs szórás becsléséből eredő
+többletbizonytalanságot tükrözi.</p>
+<p>A t-eloszlás alakja a szabadságfoktól (\(df\)) függ.
+Egymintás t-próbánál:</p>
+<div class="formula">
+\[
+df=n-1
+\]
+</div>
+<p>A szabadságfok növekedésével a t-eloszlás
+a standard normális eloszláshoz közelít.</p>
+<div class="note">
+<p>A p-érték meghatározásához
+a t-értéken kívül a szabadságfokot és a
+próba egy- vagy kétoldali jellegét is ismernünk kell.</p>
+</div>
+</section>
+
+<section id="s8">
+<h2>8. A p-érték és a statisztikai szignifikancia</h2>
+<h3>8.1. A p-érték meghatározása</h3>
+<p>A <strong>p-érték</strong> annak a valószínűsége,
+hogy a nullhipotézis és a statisztikai modell
+helyességét feltételezve a megfigyelttel azonos vagy
+annál szélsőségesebb próbastatisztika-értéket kapjunk,
+a próba által meghatározott irányban vagy irányokban.</p>
+<p>vagy másképpen:</p>
+<p>A <strong>p-érték</strong> annak a valószínűsége,
+hogy a megfigyelt - vagy annál extrémebb - próbastatisztika-értéket kapjuk,
+ha feltételezzük, hogy a nullhipotézis igaz.</p>
+<p>A kis p-érték azt jelenti, hogy a megfigyelt
+eredmény viszonylag szokatlan lenne a nullmodell (a nullhipotézis igazsága) mellett.</p>
+<h3>8.2. Mit nem jelent a p-érték?</h3>
+<ul><li>A \(p=0{,}03\) nem jelenti azt, hogy 3% a nullhipotézis igazságának valószínűsége.</li>
+<li>Nem jelenti azt, hogy 97% az alternatív hipotézis igazságának valószínűsége.</li>
+<li>Nem jelenti azt, hogy 3% a valószínűsége annak, hogy az eredmény pusztán véletlenül keletkezett.</li>
+<li>Nem mutatja meg a hatás nagyságát vagy gyakorlati jelentőségét.</li></ul>
+<h3>8.3. Szignifikanciaszint</h3>
+<p>A szignifikanciaszint (\(\alpha\)) előre meghatározott
+döntési küszöb. Gyakori választás az \(\alpha=0{,}05\).</p>
+<div class="table-wrap"><table>
+<tr><th>p-érték</th><th>Döntés \(\alpha=0{,}05\) mellett</th></tr>
+<tr><td>0,003</td><td>\(H_0\) elvetése</td></tr>
+<tr><td>0,041</td><td>\(H_0\) elvetése</td></tr>
+<tr><td>0,049</td><td>\(H_0\) elvetése</td></tr>
+<tr><td>0,051</td><td>Nem vetjük el \(H_0\)-t</td></tr>
+<tr><td>0,300</td><td>Nem vetjük el \(H_0\)-t</td></tr>
+</table></div>
+<p>A 0,05-ös küszöb konvenció. A \(p=0{,}049\) és
+\(p=0{,}051\) nagyon hasonló bizonyítékot képvisel,
+még ha a hagyományos besorolásuk különbözik is.</p>
+<h3>8.4. Döntés az alternatív hipotézisről</h3>
+<p>Ha a p-érték kellően kicsi, elvetjük a
+nullhipotézist a meghatározott alternatív
+hipotézis javára.</p>
+<p>Ha \(p&gt;\alpha\), nem vetjük el a nullhipotézist.
+Ez <strong>nem jelenti \(H_0\) elfogadását vagy
+bizonyítását</strong>.</p>
+<p>A nem szignifikáns eredmény mögött állhat
+valóban nulla hatás, de elégtelen mintaelemszám
+vagy nagy mérési változékonyság is.</p>
+<h3>8.5. Első- és másodfajú hibák</h3>
+<div class="table-wrap"><table>
+<tr><th>Döntés</th><th>\(H_0\) igaz</th><th>\(H_0\) hamis</th></tr>
+<tr><td>\(H_0\) elvetése</td><td>Elsőfajú hiba</td><td>Helyes elvetés</td></tr>
+<tr><td>Nem vetjük el \(H_0\)-t</td><td>Helyes döntés</td><td>Másodfajú hiba</td></tr>
+</table></div>
+<p><strong>Elsőfajú hiba:</strong> igaz nullhipotézis
+elvetése. Megfelelően kalibrált próba esetén
+ennek valószínűségét \(\alpha\) szabályozza.</p>
+<p><strong>Másodfajú hiba:</strong> hamis nullhipotézis
+elvetésének elmulasztása. Valószínűségét \(\beta\) jelöli.</p>
+<p>A <strong>próba ereje</strong>, másként <strong>statisztikai erő</strong> (power):</p>
+<div class="formula">
+\[
+\text{Power}=1-\beta
+\]
+</div>
+<p>A próba ereje annak valószínűsége,
+hogy egy meghatározott valódi hatás fennállásakor
+elvetjük a nullhipotézist.</p>
+<p>A nagyobb minta, a kisebb változékonyság
+és a nagyobb valódi hatás általában növeli
+a statisztikai erőt.</p>
+</section>
+
+<section id="s9">
+<h2>9. A három alapvető t-próba</h2>
+<p>A független mintás t-próbát <strong>független kétmintás t-próbának</strong>,
+a páros mintás t-próbát <strong>páros t-próbának</strong> vagy
+<strong>összetartozó mintás t-próbának</strong> is nevezik.</p>
+<p>Mindhárom t-próba egy átlagos különbséget
+viszonyít annak becsült standard hibájához.</p>
+<div class="table-wrap"><table>
+<tr><th>Próba</th><th>Kutatási kérdés</th><th>Adatszerkezet</th></tr>
+<tr><td>Egymintás</td><td>Eltér-e egy átlag egy referenciaértéktől?</td><td>Egy minta</td></tr>
+<tr><td>Független mintás</td><td>Különbözik-e két populáció átlaga?</td><td>Két független csoport</td></tr>
+<tr><td>Páros mintás</td><td>Eltér-e nullától az átlagos páron belüli különbség?</td><td>Összetartozó mérések</td></tr>
+</table></div>
+<h3>9.1. Egymintás t-próba</h3>
+<p>Egy populációs átlagot hasonlítunk
+össze egy meghatározott referenciaértékkel.</p>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>Egy memóriateszt referenciaátlaga
+100 pont. Egy 25 fős minta átlaga 106, szórása 12.</p>
+\[
+H_0:\mu=100
+\]
+\[
+H_1:\mu\neq100
+\]
+<div class="formula">
+\[
+t=\frac{106-100}{12/\sqrt{25}}=2{,}50
+\]
+</div>
+\[
+df=25-1=24
+\]
+<p><strong>Eredmény:</strong></p>
+<p>\(t(24)=2{,}50,\quad p\approx0{,}020\).</p>
+</div>
+<p>Mivel \(p&lt;0{,}05\), elvetjük \(H_0\)-t.
+Statisztikailag szignifikáns bizonyítékot
+találtunk arra, hogy a populációs átlag eltér 100-tól.</p>
+<h3>9.2. Független mintás t-próba</h3>
+<p>Két független csoport populációs átlagát
+hasonlítjuk össze.</p>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>Egy mindfulness-tréninget
+végző és egy kontrollcsoport figyelmi teljesítménye.</p>
+<div class="table-wrap"><table>
+<tr><th></th><th>Tréning</th><th>Kontroll</th></tr>
+<tr><td>\(n\)</td><td>25</td><td>25</td></tr>
+<tr><td>Átlag</td><td>80</td><td>70</td></tr>
+<tr><td>SD</td><td>15</td><td>15</td></tr>
+</table></div>
+\[
+H_0:\mu_1-\mu_2=0
+\]
+\[
+H_1:\mu_1-\mu_2\neq0
+\]
+</div>
+<p>A Student-féle független mintás t-próba
+összevont szórást használ:</p>
+<div class="formula">
+\[
+s_p=
+\sqrt{
+\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}
+{n_1+n_2-2}
+}
+\]
+</div>
+<div class="formula">
+\[
+t=
+\frac{\bar{x}_1-\bar{x}_2}
+{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
+\]
+</div>
+<p>A példában az összevont szórás 15,
+a különbség standard hibája körülbelül 4,24.</p>
+<div class="formula">
+\[
+t=
+\frac{80-70}
+{15\sqrt{\frac{1}{25}+\frac{1}{25}}}
+\approx2{,}36
+\]
+</div>
+<p>A szabadságfok:</p>
+<div class="formula">
+\[
+df=n_1+n_2-2=48
+\]
+</div>
+<p><strong>Eredmény:</strong>
+\(t(48)=2{,}36,\quad p\approx0{,}022\).</p>
+<p>Elvetjük \(H_0\)-t. A csoportok átlagos figyelmi
+teljesítménye között szignifikáns különbség van.</p>
+<p>A szignifikáns különbség önmagában nem
+bizonyít oksági kapcsolatot. Ehhez a
+kutatási elrendezést is figyelembe kell venni.</p>
+<h4>Student- és Welch-féle t-próba</h4>
+<p>A Student-féle változat azonos populációs varianciákat
+(<strong>szóráshomogenitást</strong>) feltételez. A Welch-féle változat
+nem igényli ezt a feltételt, ezért gyakran
+előnyösebb alapértelmezett választás.</p>
+<div class="formula">
+\[
+t_{\mathrm{Welch}}=
+\frac{\bar{x}_1-\bar{x}_2}
+{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
+\]
+</div>
+<p>A Welch-próba módosított szabadságfokot használ.</p>
+<h3>9.3. Páros mintás t-próba</h3>
+<p>Összetartozó megfigyeléseket hasonlítunk össze,
+például ugyanazon személyek beavatkozás előtti
+és utáni pontszámait.</p>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>16 résztvevő szorongását
+mérjük egy beavatkozás előtt és után.</p>
+<p>A különbségpontszámokat így határozzuk meg:</p>
+\[
+d_i=x_{i,\text{előtte}}-x_{i,\text{utána}}
+\]
+<p>Átlagos különbség: 4 pont.<br>
+A különbségpontszámok szórása: 6 pont.</p>
+\[
+H_0:\mu_d=0
+\]
+\[
+H_1:\mu_d\neq0
+\]
+<div class="formula">
+\[
+t=\frac{\bar{d}}{s_d/\sqrt{n}}
+=\frac{4}{6/\sqrt{16}}
+\approx2{,}67
+\]
+</div>
+\[
+df=16-1=15
+\]
+<p><strong>Eredmény:</strong></p>
+<p>\(t(15)=2{,}67,\quad p\approx0{,}018\).</p>
+</div>
+<p>Elvetjük \(H_0\)-t. A beavatkozás előtti és
+utáni mérések átlagos különbsége
+statisztikailag szignifikáns.</p>
+<div class="note">
+<p><strong>Fontos összefüggés:</strong></p>
+<p>a páros mintás t-próba matematikailag
+egy egymintás t-próba, amelyet a
+párok különbségpontszámain végzünk el.</p>
+</div>
+</section>
+
+<section id="s10">
+<h2>10. A t-próbák előfeltételei</h2>
+<p>A t-próbák érvényessége a statisztikai
+modell feltételeinek teljesülésétől függ.</p>
+<div class="table-wrap"><table>
+<tr><th>Próba</th><th>Fontos feltételek</th></tr>
+<tr><td>Egymintás</td><td>Független megfigyelések; kis mintás pontos következtetéshez normális populációs eloszlás.</td></tr>
+<tr><td>Független mintás</td><td>Független megfigyelések; kis mintás következtetéshez csoportonkénti normalitás; a Student-változatnál szóráshomogenitás is szükséges. A Welch-próba szabadságfokának meghatározása közelítő eljárás.</td></tr>
+<tr><td>Páros mintás</td><td>Független párok; értelmezhető párosítás; kis mintás pontos következtetéshez a különbségpontszámok normalitása.</td></tr>
+</table></div>
+<p>A próbák érzékenyek lehetnek a szélsőséges
+kiugró értékekre, különösen kis mintában.</p>
+<p>A páros mintás t-próba normalitási feltétele
+a különbségpontszámokra vonatkozik, nem
+feltétlenül a nyers mérésekre.</p>
+<p>A t-próbák mérsékelt normalitássértés mellett
+gyakran robusztusak, de az erős ferdeség,
+a kiugró értékek és a függő megfigyelések
+veszélyeztethetik az érvényességet.</p>
+<h3>10.1. Ha a normalitási feltétel sérül: Mann–Whitney-próba</h3>
+<p>Két <strong>független csoport</strong> összehasonlításakor, ha a normalitás
+jelentősen sérül, különösen kis mintában, a független mintás t-próba
+helyett szóba jöhet a <strong>Mann–Whitney-féle U-próba</strong>.
+Ez nemparaméteres, rangokon alapuló eljárás, amely nem feltételez
+normális eloszlást. Feltétele azonban a megfigyelések függetlensége
+és legalább ordinális mérési szintje.</p>
+<p>A próba a két csoport értékeinek együttes rangsorolására épül.
+Nem közvetlenül az átlagok különbségét vizsgálja; azonos alakú,
+egymáshoz képest csak eltolódó eloszlások esetén a mediánok
+különbségére vonatkozó következtetésként is értelmezhető.
+Eltérő eloszlásalak mellett a szignifikáns eredmény nem feltétlenül
+jelent mediánkülönbséget.</p>
+<div class="note">
+<p>A Mann–Whitney-próba <strong>független mintákra</strong> alkalmazható,
+ezért nem helyettesíti a páros mintás t-próbát.
+Összetartozó méréseknél más eljárás, például megfelelő feltételek
+mellett a Wilcoxon-féle előjeles rangpróba jöhet szóba.
+A normalitás kisebb sérülése nem teszi automatikusan szükségessé
+a t-próba lecserélését; a mintanagyságot, a kiugró értékeket
+és a kutatási kérdést is figyelembe kell venni.</p>
+</div>
+</section>
+
+<section id="s11">
+<h2>11. Hatásméretek és konfidenciaintervallumok</h2>
+<p>A <strong>hatásméret</strong> és a <strong>hatásnagyság</strong> egyaránt használatos magyar elnevezés.
+A <strong>konfidenciaintervallum</strong> másik bevett neve <strong>megbízhatósági intervallum</strong>.</p>
+<p>A statisztikai szignifikancia nem azonos
+a hatás nagyságával vagy gyakorlati jelentőségével.</p>
+<p>Nagy mintában nagyon kicsi hatás is lehet
+szignifikáns. Kis mintában jelentős hatás
+is maradhat nem szignifikáns.</p>
+<h3>11.1. Cohen-féle d</h3>
+<p>A Cohen-féle d a különbséget
+szórásegységekben fejezi ki.</p>
+<p>Egymintás próba:</p>
+<div class="formula">
+\[
+d=\frac{\bar{x}-\mu_0}{s}
+\]
+</div>
+<p>Független minták, összevont szórással:</p>
+<div class="formula">
+\[
+d=\frac{\bar{x}_1-\bar{x}_2}{s_p}
+\]
+</div>
+<p>Páros minták egyik gyakori mutatója:</p>
+<div class="formula">
+\[
+d_z=\frac{\bar{d}}{s_d}
+\]
+</div>
+<div class="table-wrap"><table>
+<tr><th>Cohen-féle d abszolút értéke</th><th>Hagyományos értelmezés</th></tr>
+<tr><td>0,20</td><td>Kis hatás</td></tr>
+<tr><td>0,50</td><td>Közepes hatás</td></tr>
+<tr><td>0,80</td><td>Nagy hatás</td></tr>
+</table></div>
+<p>Ezek csak hozzávetőleges támpontok,
+nem univerzális határértékek.
+A mutató előjele az összehasonlítás irányát jelzi.</p>
+<h3>11.2. Konfidenciaintervallum</h3>
+<p>A konfidenciaintervallum a populációs
+paraméter intervallumbecslése.</p>
+<p>Egy átlag 95%-os t-alapú konfidenciaintervalluma:</p>
+<div class="formula">
+\[
+CI_{95\%}=
+\bar{x}\pm t_{0.975,df}\,
+\widehat{SE}_{\bar{x}}
+\]
+</div>
+<div class="example">
+<p><strong>Példa:</strong></p>
+<p>Átlag = 106, SE = 2,4,
+\(df=24\), kritikus \(t\approx2{,}064\).</p>
+\[
+106\pm2{,}064\times2{,}4
+\]
+\[
+CI_{95\%}=[101{,}05;\ 110{,}95]
+\]
+</div>
+<p>Az intervallum nem tartalmazza a 100-as
+nullhipotézis szerinti értéket, ami összhangban
+van a kétoldali t-próba 0,05-ös szinten
+szignifikáns eredményével.</p>
+<div class="note">
+<p>A 95%-os konfidenciaintervallumot olyan eljárással
+számítjuk, amely megfelelő feltételek mellett
+az ismételt mintavételek 95%-ában tartalmazza
+a valódi populációs paramétert.
+Nem azt jelenti, hogy a konkrét, rögzített
+paraméter 95%-os valószínűséggel esik
+az adott intervallumba.</p>
+</div>
+</section>
+
+<section id="s12">
+<h2>12. Melyik t-próbát válasszuk?</h2>
+<div class="widget">
+<h4>Interaktív próbaválasztó</h4>
+
+<p>Válassz egy kutatási elrendezést!</p>
+
+<div id="testChoices">
+<label class="option">
+<input type="radio" name="design" value="one" checked>
+30 hallgató átlagát hasonlítjuk egy ismert referenciaátlaghoz.
+</label>
+
+<label class="option">
+<input type="radio" name="design" value="ind">
+Két különböző hallgatói csoport végez el egy memóriatesztet.
+</label>
+
+<label class="option">
+<input type="radio" name="design" value="pair">
+Ugyanaz a 30 hallgató végez el egy tesztet tréning előtt és után.
+</label>
+</div>
+
+<div id="testExplanation" class="feedback correct" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="s13">
+<h2>13. Statisztikai eredmények közlése</h2>
+<p>A pszichológiában a statisztikai eredményeket
+az APA-stílus szerint közöljük.</p>
+<p>A t-próba közlése rendszerint tartalmazza
+az átlagokat, szórásokat, t-értéket,
+szabadságfokot, p-értéket, valamint lehetőség
+szerint a hatásméretet és konfidenciaintervallumot.</p>
+<div class="example">
+<p><strong>Szignifikáns eredmény:</strong></p>
+<p><br></p>
+<p>A független mintás t-próba alapján a
+tréningcsoport (\(M=80,\ SD=15\)) szignifikánsan
+magasabb pontszámot ért el, mint a kontrollcsoport
+(\(M=70,\ SD=15\)),
+\(t(48)=2{,}36,\ p=0{,}022,\ d=0{,}67\).</p>
+</div>
+<div class="example">
+<p><strong>Nem szignifikáns eredmény:</strong></p>
+<p><br></p>
+<p>A két csoport memóriateljesítménye közötti
+különbség nem volt szignifikáns,
+\(t(48)=1{,}12,\ p=0{,}268\).</p>
+</div>
+<p>A nem szignifikáns eredmény nem bizonyítja
+a különbség hiányát. Az értelmezés során
+a becslés bizonytalanságát és a hatás
+pszichológiai jelentőségét is figyelembe kell venni.</p>
+</section>
+
+<section id="s14">
+<h2>14. A legfontosabb fogalmak összefoglalása</h2>
+<div class="table-wrap"><table>
+<tr><th>Fogalom</th><th>Meghatározás</th></tr>
+<tr><td>Átlag</td><td>A megfigyelések számtani közepe.</td></tr>
+<tr><td>Medián</td><td>A rendezett adatok középső értéke.</td></tr>
+<tr><td>Módusz</td><td>A leggyakoribb érték.</td></tr>
+<tr><td>Variancia (szórásnégyzet)</td><td>Négyzetes eltéréseken alapuló szóródási mutató; a szórás négyzete.</td></tr>
+<tr><td>Szórás</td><td>Változékonyság az eredeti mértékegységben.</td></tr>
+<tr><td>Korrigált tapasztalati szórás</td><td>Az \(n-1\) nevezőjű mintavariancia négyzetgyöke; a jegyzetben \(s\).</td></tr>
+<tr><td>Ferdeség (skewness)</td><td>Az eloszlás aszimmetriájának mutatója; pozitív értéknél a jobb, negatívnál a bal oldali farok hosszabb.</td></tr>
+<tr><td>Csúcsosság (JASP Kurtosis)</td><td>Mintanagyságra korrigált excess kurtosis. A kurzus szabálya szerint −2 alatt lapos, −2 és +2 között közel normális csúcsosságú, +2 fölött csúcsos eloszlás.</td></tr>
+<tr><td>Valószínűség</td><td>Egy esemény bekövetkezéséhez rendelt, 0 és 1 közötti szám a valószínűségi modellben.</td></tr>
+<tr><td>Normális eloszlás</td><td>Szimmetrikus, haranggörbe alakú eloszlás.</td></tr>
+<tr><td>z-pontszám</td><td>Az átlagtól való eltérés szórásegységekben.</td></tr>
+<tr><td>Mintavételi eloszlás</td><td>Egy statisztika eloszlása ismételt mintavételek során.</td></tr>
+<tr><td>Standard hiba</td><td>Egy statisztika mintavételi eloszlásának szórása.</td></tr>
+<tr><td>\(H_0\)</td><td>A vizsgált nullhipotézis.</td></tr>
+<tr><td>\(H_1\)</td><td>Alternatív hipotézis, másként ellenhipotézis.</td></tr>
+<tr><td>t-érték</td><td>Standard hibával standardizált eltérés.</td></tr>
+<tr><td>t-eloszlás</td><td>A t-próbák referenciaeloszlása.</td></tr>
+<tr><td>Szabadságfok</td><td>A referenciaeloszlást meghatározó mennyiség.</td></tr>
+<tr><td>p-érték</td><td>Legalább ilyen szélsőséges próbastatisztika valószínűsége a nullmodell mellett.</td></tr>
+<tr><td>Szignifikanciaszint</td><td>Az elsőfajú hiba valószínűségének előre rögzített felső korlátja (\(\alpha\)); a p-értékkel összevetett döntési küszöb.</td></tr>
+<tr><td>Elsőfajú hiba</td><td>Igaz \(H_0\) elvetése.</td></tr>
+<tr><td>Másodfajú hiba</td><td>Hamis \(H_0\) elvetésének elmulasztása.</td></tr>
+<tr><td>A próba ereje (statisztikai erő)</td><td>\(H_0\) elvetésének valószínűsége meghatározott alternatíva mellett; \(1-\beta\).</td></tr>
+<tr><td>Hatásméret (hatásnagyság)</td><td>A hatás nagyságának számszerű jellemzése.</td></tr>
+<tr><td>Konfidenciaintervallum (megbízhatósági intervallum)</td><td>Olyan intervallumbecslési eljárás eredménye, amelynek hosszú távú lefedettségét a megbízhatósági szint adja meg.</td></tr>
+</table></div>
+</section>
+
+<section id="s15">
+<h2>15. Gyakorlófeladatok</h2>
+<p>Válaszolj a kérdésekre, majd kattints
+a „Válaszok ellenőrzése” gombra!</p>
+<div id="quiz"></div>
+<button id="gradeBtn" type="button">
+Válaszok ellenőrzése
+</button>
+<button id="resetBtn" type="button" class="secondary">
+Újrakezdés
+</button>
+<div id="quizScore" aria-live="polite"></div>
+</section>
+
+<section id="takeaways">
+<h2>A legfontosabb tanulságok</h2>
+<ol><li>A mintastatisztikák nem azonosak a populációs paraméterekkel.</li>
+<li>A szórás a megfigyelések, a standard hiba a becslőstatisztika változékonyságát jellemzi.</li>
+<li>A t-érték a megfigyelt különbséget a becsült standard hibához viszonyítja.</li>
+<li>A p-érték nem a nullhipotézis igazságának valószínűsége.</li>
+<li>A nem szignifikáns eredmény nem bizonyítja a nullhipotézist.</li>
+<li>A t-próba kiválasztását a kutatási elrendezés határozza meg.</li>
+<li>A teljes értelmezéshez a hatásméretet, a bizonytalanságot és a kutatási elrendezést is figyelembe kell venni.</li></ol>
+</section>
+
+<script type="application/json" id="quiz-data">[{"q": "Egy vizsgálatban a mintaátlag 75, a szórás 10. Mit ír le a szórás?", "opts": ["A populációs átlag becslésének pontosságát.", "Az egyéni megfigyelések változékonyságát a mintaátlag körül.", "Annak valószínűségét, hogy a nullhipotézis igaz."], "correct": 1, "explanation": "A szórás az egyéni megfigyelések változékonyságát jellemzi. A standard hiba a becslőstatisztika mintavételi változékonyságát írja le."}, {"q": "Egy mintában SD = 12 és n = 36. Mennyi a mintaátlag becsült standard hibája?", "opts": ["12", "6", "2", "0,33"], "correct": 2, "explanation": "SE = 12 / √36 = 12 / 6 = 2."}, {"q": "Egy statisztikai próba p = 0,03 eredményt ad. Melyik értelmezés helyes?", "opts": ["A nullhipotézis igazságának valószínűsége 3%.", "A nullhipotézis és a modell mellett egy legalább ilyen szélsőséges eredmény valószínűsége 3%.", "Az alternatív hipotézis igazságának valószínűsége 97%."], "correct": 1, "explanation": "A p-érték a megfigyelttel azonos vagy annál szélsőségesebb próbastatisztika-érték valószínűsége a nullhipotézis és a modell feltételezése mellett, nem pedig a hipotézis igazságának valószínűsége."}, {"q": "Ugyanazokat a résztvevőket mérjük meg alvásmegvonás előtt és után. Melyik próbát használjuk?", "opts": ["Független mintás t-próba", "Egymintás z-próba", "Páros mintás t-próba"], "correct": 2, "explanation": "A mérések személyeken belül összetartoznak, ezért páros mintás t-próbát alkalmazunk."}, {"q": "Egy kétoldali t-próba p = 0,18 eredményt ad α = 0,05 mellett. Mi a helyes döntés?", "opts": ["Elfogadjuk a nullhipotézist igaznak.", "Elvetjük a nullhipotézist.", "Nem vetjük el a nullhipotézist."], "correct": 2, "explanation": "A nem szignifikáns eredmény nem bizonyítja a nullhipotézist. Csak azt jelenti, hogy a választott szinten nem vetjük el."}, {"q": "Ha a szórás változatlan, hogyan hat a mintaelemszám növelése a standard hibára?", "opts": ["Növeli a standard hibát.", "Csökkenti a standard hibát.", "Nem befolyásolja."], "correct": 1, "explanation": "SE = s / √n. Nagyobb n mellett kisebb a standard hiba."}]</script>
+
+<script type="application/json" id="explanations-data">{"one": "\u003cstrong\u003eEgymintás t-próba.\u003c/strong\u003e\n  A mintaátlagot egy meghatározott referenciaértékhez\n  hasonlítjuk. Minden résztvevő egy megfigyelést ad.", "ind": "\u003cstrong\u003eFüggetlen mintás t-próba.\u003c/strong\u003e\n  A két csoport különböző résztvevőkből áll,\n  és a populációs átlagokat hasonlítjuk össze.", "pair": "\u003cstrong\u003ePáros mintás t-próba.\u003c/strong\u003e\n  Minden résztvevőt kétszer mérünk.\n  A próba a személyeken belüli különbségek\n  átlagát vizsgálja."}</script>
+<!-- NOTES:END -->
+</main>
+</div>
+
+<footer>
+Bevezetés a statisztikába – Pszichológia BSc<br>
+Interaktív oktatási jegyzet
+</footer>
+
+
+
+</body>
+</html>

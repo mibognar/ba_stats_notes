@@ -1,0 +1,97 @@
+<!-- Interactive markup. Edit the course prose in notes.md. -->
+
+<template id="dispersionChart">
+<svg class="chart" id="dispersionChart" viewbox="0 0 620 190" role="img" aria-label="Kis és nagy szóródású normális eloszlások">
+</svg>
+</template>
+
+<template id="normalChart">
+<svg class="chart" id="normalChart" viewbox="0 0 620 250" role="img" aria-label="Standard normális eloszlás, z-értékekkel">
+</svg>
+</template>
+
+<template id="standard-error">
+<div class="widget">
+<h4>Interaktív standardhiba-kalkulátor</h4>
+
+<p>Változtasd a mintaelemszámot és a mintaszórást,
+és figyeld meg, hogyan változik a becsült standard hiba!</p>
+
+<label for="sampleSize">
+Mintaelemszám: <strong id="nLabel">100</strong>
+</label>
+<input id="sampleSize" type="range" min="10" max="400" step="10" value="100">
+
+<label for="sdRange">
+Mintaszórás: <strong id="sdLabel">20</strong>
+</label>
+<input id="sdRange" type="range" min="5" max="50" step="1" value="20">
+
+<p>Becsült standard hiba:</p>
+<output id="seOutput">2,00</output>
+
+<div class="formula" id="seCalculation">
+\[
+\widehat{SE}_{\bar{x}}=\frac{20}{\sqrt{100}}=2{,}00
+\]
+</div>
+
+<svg class="chart" viewbox="0 0 600 110" role="img" aria-label="Standard hiba nagyságát jelző diagram">
+<text x="10" y="22" font-size="14" fill="currentColor">
+Standard hiba
+</text>
+<rect x="10" y="42" width="570" height="26" rx="5" fill="#dce7f7"></rect>
+<rect id="seBar" x="10" y="42" width="114" height="26" rx="5" fill="#245bb4"></rect>
+<text x="10" y="92" font-size="12" fill="currentColor">
+A nagyobb mintaelemszám csökkenti a standard hibát.
+</text>
+</svg>
+</div>
+</template>
+
+<template id="test-selector">
+<div class="widget">
+<h4>Interaktív próbaválasztó</h4>
+
+<p>Válassz egy kutatási elrendezést!</p>
+
+<div id="testChoices">
+<label class="option">
+<input type="radio" name="design" value="one" checked>
+30 hallgató átlagát hasonlítjuk egy ismert referenciaátlaghoz.
+</label>
+
+<label class="option">
+<input type="radio" name="design" value="ind">
+Két különböző hallgatói csoport végez el egy memóriatesztet.
+</label>
+
+<label class="option">
+<input type="radio" name="design" value="pair">
+Ugyanaz a 30 hallgató végez el egy tesztet tréning előtt és után.
+</label>
+</div>
+
+<div id="testExplanation" class="feedback correct" aria-live="polite"></div>
+</div>
+</template>
+
+<template id="quiz">
+<div id="quiz"></div>
+</template>
+
+<template id="gradeBtn">
+<button id="gradeBtn" type="button">
+Válaszok ellenőrzése
+</button>
+</template>
+
+<template id="resetBtn">
+<button id="resetBtn" type="button" class="secondary">
+Újrakezdés
+</button>
+</template>
+
+<template id="quizScore">
+<div id="quizScore" aria-live="polite"></div>
+</template>
