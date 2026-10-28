@@ -967,28 +967,25 @@ the psychological importance of the effect into account.
 | Mean | The arithmetic mean of the observations. |
 | Median | The middle value of the ordered data. |
 | Mode | The most frequently occurring value. |
-| Variance | A measure of dispersion based on squared deviations; the square of the standard deviation. |
-| Standard deviation | Variability expressed in the original units of measurement. |
-| Corrected sample standard deviation | The square root of the sample variance with denominator \(n-1\); denoted by \(s\) in these notes. |
-| Skewness | A measure of distribution asymmetry; positive values indicate a longer right tail and negative values a longer left tail. |
-| Kurtosis (JASP Kurtosis) | Sample-size-adjusted excess kurtosis. Under the course rule, values below −2 indicate a flat distribution, values from −2 to +2 indicate approximately normal kurtosis, and values above +2 indicate a peaked distribution. |
-| Probability | A number between 0 and 1 assigned to the occurrence of an event within a probability model. |
+| Variance | The squared deviation from the mean. |
+| Standard deviation | The average deviation from the mean. |
+| Probability | The number of favourable outcomes divided by the total number of outcomes. The long-run relative frequency of an event, between 0 and 1. |
 | Normal distribution | A symmetric, bell-shaped distribution. |
 | z-score | Deviation from the mean in standard deviation units. |
 | Sampling distribution | The distribution of a statistic across repeated samples. |
 | Standard error | The standard deviation of a statistic's sampling distribution. |
 | \(H_0\) | The null hypothesis under investigation. |
 | \(H_1\) | The alternative hypothesis. |
-| t-value | A deviation standardised by its standard error. |
+| t-value | The difference between the estimated and hypothesised values, standardised by its standard error. |
 | t-distribution | The reference distribution for t-tests. |
-| Degrees of freedom | A quantity that determines the reference distribution. |
-| p-value | The probability of a test statistic at least as extreme as the observed value under the null model. |
+| Degrees of freedom | The number of elements that can vary freely within a system, e.g. n−1. |
+| p-value | The probability of obtaining this test statistic or a more extreme value, assuming that the null hypothesis is true. |
 | Significance level | The upper bound fixed in advance for the probability of a Type I error (\(\alpha\)); the decision threshold compared with the p-value. |
 | Type I error | Rejecting a true \(H_0\). |
 | Type II error | Failing to reject a false \(H_0\). |
-| Power of a test (statistical power) | The probability of rejecting \(H_0\) under a specified alternative; \(1-\beta\). |
-| Effect size | A numerical description of the magnitude of an effect. |
-| Confidence interval | The result of an interval-estimation procedure whose long-run coverage is specified by the confidence level. |
+| Power of a test (statistical power) | The probability of rejecting \(H_0\) for a specified effect size, sample size, and \(\alpha\); \(1-\beta\). |
+| Effect size | A numerical (usually standardised) description of the magnitude of an effect. |
+| Confidence interval | The range within which the population mean falls with a specified degree of precision (e.g. 95%). |
 
 <!-- section: s15 -->
 

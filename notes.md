@@ -1210,28 +1210,25 @@ pszichológiai jelentőségét is figyelembe kell venni.
 | Átlag | A megfigyelések számtani közepe. |
 | Medián | A rendezett adatok középső értéke. |
 | Módusz | A leggyakoribb érték. |
-| Variancia (szórásnégyzet) | Négyzetes eltéréseken alapuló szóródási mutató; a szórás négyzete. |
-| Szórás | Változékonyság az eredeti mértékegységben. |
-| Korrigált tapasztalati szórás | Az \(n-1\) nevezőjű mintavariancia négyzetgyöke; a jegyzetben \(s\). |
-| Ferdeség (skewness) | Az eloszlás aszimmetriájának mutatója; pozitív értéknél a jobb, negatívnál a bal oldali farok hosszabb. |
-| Csúcsosság (JASP Kurtosis) | Mintanagyságra korrigált excess kurtosis. A kurzus szabálya szerint −2 alatt lapos, −2 és +2 között közel normális csúcsosságú, +2 fölött csúcsos eloszlás. |
-| Valószínűség | Egy esemény bekövetkezéséhez rendelt, 0 és 1 közötti szám a valószínűségi modellben. |
+| Variancia (szórásnégyzet) | Az átlagtól való négyzetes eltérés. |
+| Szórás | Az átlagtól való átlagos eltérés. |
+| Valószínűség | A kedvező kimenetelek száma osztva az összes kimenetellel. Egy esemény bekövetkezésének 0 és 1 közötti relatív hosszútávú gyakorisága. |
 | Normális eloszlás | Szimmetrikus, haranggörbe alakú eloszlás. |
 | z-pontszám | Az átlagtól való eltérés szórásegységekben. |
 | Mintavételi eloszlás | Egy statisztika eloszlása ismételt mintavételek során. |
 | Standard hiba | Egy statisztika mintavételi eloszlásának szórása. |
 | \(H_0\) | A vizsgált nullhipotézis. |
 | \(H_1\) | Alternatív hipotézis, másként ellenhipotézis. |
-| t-érték | Standard hibával standardizált eltérés. |
+| t-érték | Standard hibával standardizált eltérés a becsült és a hipotetikus érték között. |
 | t-eloszlás | A t-próbák referenciaeloszlása. |
-| Szabadságfok | A referenciaeloszlást meghatározó mennyiség. |
-| p-érték | Legalább ilyen szélsőséges próbastatisztika valószínűsége a nullmodell mellett. |
+| Szabadságfok | Egy rendszeren belül szabadon változtatható elemek száma, pl n-1. |
+| p-érték | Annak a valószínűsége, hogy ilyen, vagy ennél extrémebb próbastatisztikát kapunk, ha feltételezzük, hogy a nullhipotézis igaz. |
 | Szignifikanciaszint | Az elsőfajú hiba valószínűségének előre rögzített felső korlátja (\(\alpha\)); a p-értékkel összevetett döntési küszöb. |
 | Elsőfajú hiba | Igaz \(H_0\) elvetése. |
 | Másodfajú hiba | Hamis \(H_0\) elvetésének elmulasztása. |
-| A próba ereje (statisztikai erő) | \(H_0\) elvetésének valószínűsége meghatározott alternatíva mellett; \(1-\beta\). |
-| Hatásméret (hatásnagyság) | A hatás nagyságának számszerű jellemzése. |
-| Konfidenciaintervallum (megbízhatósági intervallum) | Olyan intervallumbecslési eljárás eredménye, amelynek hosszú távú lefedettségét a megbízhatósági szint adja meg. |
+| A próba ereje (statisztikai erő) | \(H_0\) elvetésének valószínűsége meghatározott hatásméret, mintaméret és (\(\alpha\)) mellett; \(1-\beta\). |
+| Hatásméret (hatásnagyság) | A hatás nagyságának számszerű (általában standardizált) jellemzése. |
+| Konfidenciaintervallum (megbízhatósági intervallum) | Az a tartomány, amelybe a populáció átlaga bizonyos pontossággal (pl 95%) beleesik |
 
 
 
